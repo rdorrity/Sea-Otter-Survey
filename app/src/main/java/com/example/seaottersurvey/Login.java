@@ -43,26 +43,40 @@ public class Login extends AppCompatActivity {
         btnRegister = findViewById(R.id.btnRegister);
         tvReset = findViewById(R.id.tvReset);
 
-        btnLogin.setOnClickListener(new View.OnClickListener() {
+        btnLogin.setOnClickListener(new View.OnClickListener()
+        {
             @Override
-            public void onClick(View v) {
-                Backendless.UserService.login("rdorrity@gmail.com", "test123", new AsyncCallback<BackendlessUser>()
+            public void onClick(View v)
+            {
+                if (etMail.getText().toString().isEmpty() ||
+                        etPassword.getText().toString().isEmpty())
                 {
-                    @Override
-                    public void handleResponse(BackendlessUser response)
+                    Toast.makeText(Login.this, "Please enter all fields!", Toast.LENGTH_SHORT).show();
+                }
+                else
+                {
+                    String mail = etMail.getText().toString().trim();
+                    String password = etPassword.getText().toString().trim();
+
+                    tvLoad.setText("Busy signing you in...please wait...");
+                    showProgress(true);
+
+                    Backendless.UserService.login(mail, password, new AsyncCallback<BackendlessUser>()
                     {
-                        Toast.makeText(Login.this, "Logged in successfully!", Toast.LENGTH_SHORT).show();
-                        startActivity(new Intent(Login.this, MainActivity.class));
-                    }
+                        @Override
+                        public void handleResponse(BackendlessUser response)
+                        {
+                            Toast.makeText(Login.this, "Logged in successfully!", Toast.LENGTH_SHORT).show();
+                            startActivity(new Intent(Login.this, MainActivity.class));
+                        }
 
-                    @Override
-                    public void handleFault(BackendlessFault fault)
-                    {
-                        Toast.makeText(Login.this, fault.getMessage(), Toast.LENGTH_SHORT).show();
-
-                    }
-                });
-
+                        @Override
+                        public void handleFault(BackendlessFault fault)
+                        {
+                            Toast.makeText(Login.this, "Error: " + fault.getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    }, true);
+                }
             }
         });
 
@@ -77,8 +91,9 @@ public class Login extends AppCompatActivity {
         tvReset.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String mail = etMail.getText().toString().trim();
 
-                Backendless.UserService.restorePassword("rdorrity@gmail.com", new AsyncCallback<Void>()
+                Backendless.UserService.restorePassword(mail, new AsyncCallback<Void>()
                 {
                     @Override
                     public void handleResponse(Void response)

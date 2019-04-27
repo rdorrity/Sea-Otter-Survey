@@ -7,6 +7,7 @@ import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.backendless.Backendless;
 import com.backendless.async.callback.AsyncCallback;
@@ -16,7 +17,7 @@ public class MainActivity extends AppCompatActivity {
 
     TextView tvDescription, tvQuestion, tvQ1;
     RadioGroup rbG1;
-    RadioButton radioButton, rb1, rb2, rb3, rb4;
+    RadioButton rb1, rb2, rb3, rb4;
     Button btnSubmit;
 
 
@@ -33,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
         rb2 = findViewById(R.id.rb2);
         rb3 = findViewById(R.id.rb3);
         rb4 = findViewById(R.id.rb4);
+        btnSubmit = findViewById(R.id.btnSubmit);
 
 
         btnSubmit.setOnClickListener(new View.OnClickListener()
@@ -40,12 +42,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v)
             {
-                int btnID = rbG1.getCheckedRadioButtonId();
-
-                radioButton = (RadioButton) findViewById(btnID);
-
-
-
+                Toast.makeText(MainActivity.this, "Thank you for your feedback!", Toast.LENGTH_SHORT).show();
             }
         });
     }
