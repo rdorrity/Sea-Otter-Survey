@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Sea Otter Survey</string>
+    <string name="description">To help develop course material that best suits your needs, we would like to ask you several questions to help us improve. Your feedback is extremely valuable to us!</string>
+    <string name="headerQ">Question:</string>
+    <string name="q1">Before beginning this class, where would you consider your level of experience in relation to the course material?</string>
+    <string name="q1a1">I have trouble completing projects.</string>
+    <string name="q1a2">It takes me longer to complete projects than what I believe is expected of me.</string>
+    <string name="q1a3">I complete projects proficiently and have a fundamental understanding of the course work.</string>
+    <string name="q1a4">I have an advanced understanding that goes beyond what the course provides.</string>
+    <string name="submit">Submit</string>
+</resources>
